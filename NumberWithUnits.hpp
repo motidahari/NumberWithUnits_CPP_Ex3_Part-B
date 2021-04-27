@@ -117,9 +117,8 @@ namespace ariel {
        * 5 += a
        * */ 
 
-
-      NumberWithUnits &operator+=(const NumberWithUnits &num);
-      NumberWithUnits &operator+=(const double &num);
+      NumberWithUnits &operator+=(const NumberWithUnits&);
+      NumberWithUnits &operator+=(const double&);
       friend NumberWithUnits operator+=(const double , NumberWithUnits&);
               
       /**
@@ -128,22 +127,18 @@ namespace ariel {
        * a -= 5
        * 5 -= a
        * */ 
-      // friend NumberWithUnits operator-=(NumberWithUnits&  ,const NumberWithUnits&);
-      // friend NumberWithUnits operator-=(NumberWithUnits&  , const double);
       friend NumberWithUnits operator-=(const double , NumberWithUnits&);
-      NumberWithUnits &operator-=(const NumberWithUnits &num);
-      NumberWithUnits &operator-=(const double &num);
+      NumberWithUnits &operator-=(const NumberWithUnits&);
+      NumberWithUnits &operator-=(const double&);
       /**
        * Overloading the operators with = that not check equals
        * a *= b
        * a *= 5
        * 5 *= a
        * */ 
-      NumberWithUnits &operator*=(const NumberWithUnits &num);
-      NumberWithUnits &operator*=(const double &num);
-      // friend NumberWithUnits operator*=(NumberWithUnits&  ,const NumberWithUnits&);
+      NumberWithUnits &operator*=(const NumberWithUnits&);
+      NumberWithUnits &operator*=(const double&);
       friend NumberWithUnits operator*=(const double, NumberWithUnits&);
-      // friend NumberWithUnits operator*=(NumberWithUnits&  , const double);
 
       /**
        * Overloading the operators with = that not check equals
@@ -151,10 +146,8 @@ namespace ariel {
        * a /= 5
        * 5 /= a
        * */ 
-      NumberWithUnits &operator/=(const NumberWithUnits &num);
-      NumberWithUnits &operator/=(const double &num);
-      // friend NumberWithUnits operator/=(NumberWithUnits&  ,const NumberWithUnits&);
-      // friend NumberWithUnits operator/=(NumberWithUnits&  , const double);
+      NumberWithUnits &operator/=(const NumberWithUnits&);
+      NumberWithUnits &operator/=(const double&);
       friend NumberWithUnits operator/=(const double, NumberWithUnits&);
 
       /**
@@ -232,7 +225,5 @@ namespace ariel {
        * */ 
       NumberWithUnits& operator--();
       NumberWithUnits operator--(int);
-      
-      
   };
 }
