@@ -88,11 +88,10 @@ namespace ariel {
     */
     double convertUnit1ToUnit2(const string& unit1, const string& unit2, const double val){
       if(unit1 == unit2) {return val;}
-      try{
+      if(mat.count(unit1) > 0 && mat.at(unit1).count(unit2) > 0){
         return mat.at(unit1).at(unit2) * val;
-      }catch(const std::exception& e){
-        throw invalid_argument{"Units do not match - ["+unit1+"] cannot be converted to ["+unit2+"]"};
       }
+      throw invalid_argument{"Units do not match - ["+unit1+"] cannot be converted to ["+unit2+"]"};
     }
 
     /**
@@ -133,6 +132,18 @@ namespace ariel {
     }  
 
     /**
+     * runByMapAndAddMoreUnits - run by the units and add it to map 
+     * */
+    void runByMapAndAddMoreUnits(){
+      int size = units.size();
+      for (const auto &unit : units) {
+        for (const auto &x : mat[unit.first]) {
+          addMoreUnits(unit.first,x.first);
+          addMoreUnits(x.first,unit.first);
+        }
+      }
+    }  
+    /**
      * read_units - The function run on file and add the conversions into the map
      * @param: units_file - ifstream with path of the file
      * */   
@@ -147,13 +158,14 @@ namespace ariel {
           mat[nameUnit1][nameUnit2] = num2;
           units[nameUnit1] = 1;
           units[nameUnit2] = 1;
-          addMoreUnits(nameUnit1,nameUnit2);
-          addMoreUnits(nameUnit2,nameUnit1);
+          // addMoreUnits(nameUnit1,nameUnit2);
+          // addMoreUnits(nameUnit2,nameUnit1);
         }else{
           throw invalid_argument{"Error: Unit conversion file is invalid\n"};
         }
       }
-      // printMap(); 
+      runByMapAndAddMoreUnits();
+      printMap(); 
     }
 
 
